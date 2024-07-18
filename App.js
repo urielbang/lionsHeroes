@@ -16,17 +16,17 @@ export default function App() {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    const enableRTL = () => {
-      I18nManager.forceRTL(true);
-    };
-    enableRTL();
-
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 2000,
       useNativeDriver: true,
     }).start();
   }, [fadeAnim]);
+
+  useEffect(() => {
+    I18nManager.forceRTL(true);
+    console.log("uriel");
+  }, []);
 
   return (
     <View style={styles.container}>

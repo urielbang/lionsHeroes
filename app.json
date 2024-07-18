@@ -7,6 +7,9 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "backgroundColor": "#ffffff",
+    "extra": {
+      "NODE_ENV": "development"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
