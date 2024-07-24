@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useEffect, useRef } from "react";
 import {
   StatusBar,
@@ -6,7 +5,6 @@ import {
   Text,
   View,
   Image,
-  I18nManager,
   Animated,
   TouchableOpacity,
 } from "react-native";
@@ -23,19 +21,10 @@ export default function App() {
     }).start();
   }, [fadeAnim]);
 
-  useEffect(() => {
-    I18nManager.forceRTL(true);
-    console.log("uriel");
-  }, []);
-
   return (
     <View style={styles.container}>
       <StatusBar barStyle={"light-content"} />
       <LinearGradient colors={["#1E3A5F", "#1F485B"]} style={styles.background}>
-        <View style={styles.content}>
-          <Text style={styles.text}>ברוכים הבאים לגיבורי אריות!</Text>
-        </View>
-
         <View style={styles.containerImage}>
           <Image
             source={require("./assets/android-chrome-192x192.png")}
@@ -101,4 +90,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
+  languageList: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 10,
+    backgroundColor: "#6258e8",
+  },
+  languageItem: {},
 });
