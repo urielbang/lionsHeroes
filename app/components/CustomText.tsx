@@ -1,17 +1,18 @@
 import React from "react";
-import { Text as RNText, TextProps, StyleSheet, View } from "react-native";
-import { translate, TxKeyPath } from "../i18n";
+import { Text as RNText, TextProps, StyleSheet, Text } from "react-native";
+import { useTranslation } from "react-i18next";
 
 interface CustomTextProps extends TextProps {
-  tx?: TxKeyPath;
+  tx?: string;
 }
 
-const CustomText = ({ tx, style, children, ...props }: CustomTextProps) => {
-  const translatedText = tx ? translate(tx) : null;
+const CustomText = ({ tx, style, ...props }: CustomTextProps) => {
+  const { t } = useTranslation();
+
   return (
     <RNText {...props} style={[styles.defaultFont, style]}>
-      {translatedText}
-      {children}
+      {/* {tx ? t(tx) : props.children} */}
+      <Text>{t(String(tx))}</Text>
     </RNText>
   );
 };
