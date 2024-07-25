@@ -2,6 +2,7 @@ import {
   Animated,
   ImageBackground,
   StyleSheet,
+  Text,
   useWindowDimensions,
   View,
 } from "react-native";
@@ -9,10 +10,12 @@ import React, { useEffect, useRef } from "react";
 import ButtonLanguageChange from "../components/ButtonLanguageChange";
 import { Button } from "../components/Button";
 import CustomText from "../components/CustomText";
+import { useNavigation } from "@react-navigation/native";
 
 export default function WelcomeScreen() {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const { height } = useWindowDimensions();
+  const navigation = useNavigation();
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -21,6 +24,13 @@ export default function WelcomeScreen() {
       useNativeDriver: true,
     }).start();
   }, [fadeAnim]);
+
+  const handleRegisterPress = () => {
+    navigation.navigate("RegisterScreen");
+  };
+  const handleLoginPress = () => {
+    navigation.navigate("loginScreen");
+  };
 
   return (
     <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
@@ -35,8 +45,12 @@ export default function WelcomeScreen() {
           <CustomText tx="welcome" style={styles.header} />
         </View>
         <View style={[styles.containerButtons, { marginTop: height * 0.7 }]}>
-          <Button>welcome-screen.register</Button>
-          <Button color={"#3FA2F6"} style={{ backgroundColor: "white" }}>
+          <Button onPress={handleRegisterPress}>welcome-screen.register</Button>
+          <Button
+            onPress={handleLoginPress}
+            color={"#3FA2F6"}
+            style={{ backgroundColor: "white" }}
+          >
             welcome-screen.login
           </Button>
         </View>
@@ -74,14 +88,13 @@ const styles = StyleSheet.create({
   buttonChangeLanguage: {
     flex: 1,
     position: "absolute",
-    top: 80,
+    top: 30,
     right: 20,
   },
   header: {
-    fontSize: 30,
+    fontSize: 27,
     fontWeight: "bold",
     color: "white",
-    zIndex: 5,
   },
   contanerHeader: {
     position: "absolute",
