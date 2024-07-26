@@ -1,7 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import Register from "../components/Auth/Register";
 
 import React from "react";
+import { Header } from "../components/Header";
 
 export default function RegisterScreen() {
   return (
@@ -10,14 +12,15 @@ export default function RegisterScreen() {
       style={styles.container}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
-    ></LinearGradient>
+    >
+      <Header text="welcome-screen.register" />
+      <Register />
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });

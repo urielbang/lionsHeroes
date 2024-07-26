@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome5";
 import CustomText from "./CustomText";
 import { useNavigation } from "@react-navigation/native";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 export const Header = ({
   text,
@@ -22,7 +22,12 @@ export const Header = ({
           onPress={goBackCallback ?? navigation.goBack}
           style={styles.arrow}
         >
-          <Icon name="angle-left" size={30} color="white" />
+          <AntDesign
+            name="left"
+            size={26}
+            color="white"
+            style={{ fontWeight: "bold" }}
+          />
         </TouchableOpacity>
       )}
       <CustomText allowFontScaling={false} style={styles.headline} tx={text} />
