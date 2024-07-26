@@ -2,7 +2,6 @@ import {
   Animated,
   ImageBackground,
   StyleSheet,
-  Text,
   useWindowDimensions,
   View,
 } from "react-native";

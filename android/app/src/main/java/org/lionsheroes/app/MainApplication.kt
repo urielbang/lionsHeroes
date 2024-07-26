@@ -11,6 +11,7 @@ import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
 import expo.modules.ApplicationLifecycleDispatcher
 import expo.modules.ReactNativeHostWrapper
+import com.BV.LinearGradient.LinearGradientPackage // <-- Add this import
 
 class MainApplication : Application(), ReactApplication {
 
@@ -18,9 +19,10 @@ class MainApplication : Application(), ReactApplication {
     this,
     object : DefaultReactNativeHost(this) {
       override fun getPackages(): List<ReactPackage> {
+        val packages: MutableList<ReactPackage> = PackageList(this).packages
         // Packages that cannot be autolinked yet can be added manually here, for example:
-        // packages.add(MyReactNativePackage())
-        return PackageList(this).packages
+        packages.add(LinearGradientPackage()) // <-- Add this line
+        return packages
       }
 
       override fun getJSMainModuleName(): String = ".expo/.virtual-metro-entry"
