@@ -1,11 +1,36 @@
-import { StyleSheet } from "react-native";
+import { Alert, StyleSheet } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import Register from "../components/Auth/Register";
+import { createUser } from "../utils/api/auth";
 
-import React from "react";
+import { AuthContext } from "../store/auth.context";
+
+import React, { useContext, useState } from "react";
 import { Header } from "../components/Header";
+import LoadingOverlay from "../components/ui/LoadingOverlay";
 
 export default function RegisterScreen() {
+  const [isAuth, setIsAuth] = useState(false);
+  const authCtx = useContext(AuthContext);
+
+  const handleRegister = async ({ email, password }) => {
+    setIsAuth(true);
+    try {
+      const token = await createUser(email, password);
+      authCtx.authenticate(token);
+    } catch (error) {
+      Alert.alert(
+        "Auth Failed!",
+        "Could not create user , please check your input and try again!"
+      );
+      setIsAuth(false);
+    }
+  };
+
+  if (isAuth) {
+    return <LoadingOverlay message="auth is in progress..." />;
+  }
+
   return (
     <LinearGradient
       colors={["#2c3e50", "#34495e"]}
@@ -14,7 +39,7 @@ export default function RegisterScreen() {
       end={{ x: 1, y: 1 }}
     >
       <Header text="welcome-screen.register" />
-      <Register />
+      <Register onAuthenticate={handleRegister} />
     </LinearGradient>
   );
 }
