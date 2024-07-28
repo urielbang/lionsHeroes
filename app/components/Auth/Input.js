@@ -1,6 +1,6 @@
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from "react-native";
 
-import { Colors } from '../../constants/styles';
+import { Colors } from "../../constants/styles";
 
 function Input({
   label,
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   label: {
-    color: 'white',
+    color: "white",
     marginBottom: 4,
   },
   labelInvalid: {
@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
   input: {
     paddingVertical: 8,
     paddingHorizontal: 6,
-    backgroundColor: Colors.primary100,
+    // backgroundColor: Colors.primary100,
+    backgroundColor: "white",
     borderRadius: 4,
     fontSize: 16,
   },

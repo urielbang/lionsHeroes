@@ -6,7 +6,7 @@ import AuthForm from "./AuthForm";
 import { Colors } from "../../constants/styles";
 import { useNavigation } from "@react-navigation/native";
 
-function Login({ isLogin, onAuthenticate }) {
+function Login({ onAuthenticate }) {
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     email: false,
     password: false,
@@ -18,7 +18,7 @@ function Login({ isLogin, onAuthenticate }) {
 
   function switchAuthModeHandler() {
     // Todo
-    navigation.navigate("RegisterScreen");
+    navigation.replace("RegisterScreen");
   }
 
   function submitHandler(credentials) {

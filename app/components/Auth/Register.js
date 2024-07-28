@@ -18,7 +18,7 @@ function Register({ isLogin, onAuthenticate }) {
 
   function switchAuthModeHandler() {
     // Todo
-    navigation.navigate("loginScreen");
+    navigation.replace("loginScreen");
   }
 
   function submitHandler(credentials) {
