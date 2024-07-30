@@ -1,7 +1,12 @@
-import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 
-function LoadingOverlay({ message }) {
+interface LoadingOverlayProps {
+  message: string;
+}
+
+const LoadingOverlay: React.FC<LoadingOverlayProps> = ({ message }) => {
   return (
     <LinearGradient
       colors={["#2c3e50", "#34495e"]}
@@ -13,14 +18,13 @@ function LoadingOverlay({ message }) {
       <ActivityIndicator size="large" />
     </LinearGradient>
   );
-}
+};
 
 export default LoadingOverlay;
 
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-
     justifyContent: "center",
     alignItems: "center",
     padding: 32,

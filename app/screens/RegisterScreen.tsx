@@ -8,8 +8,9 @@ import { AuthContext } from "../store/auth.context";
 import React, { useContext, useState } from "react";
 import { Header } from "../components/Header";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function RegisterScreen() {
+export default function RegisterScreen({ navigation }) {
   const [isAuth, setIsAuth] = useState(false);
   const authCtx = useContext(AuthContext);
 
@@ -18,6 +19,10 @@ export default function RegisterScreen() {
     try {
       const token = await createUser(email, password);
       authCtx.authenticate(token);
+      if (token) {
+        await AsyncStorage.setItem("token", token);
+        navigation.navigate("home");
+      }
     } catch (error) {
       Alert.alert(
         "Auth Failed!",

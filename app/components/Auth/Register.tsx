@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 
 import FlatButton from "../ui/FlatButton";
@@ -6,7 +6,11 @@ import AuthForm from "./AuthForm";
 import { Colors } from "../../constants/styles";
 import { useNavigation } from "@react-navigation/native";
 
-function Login({ onAuthenticate }) {
+interface RegisterProps {
+  onAuthenticate: (credentials: { email: string; password: string }) => void;
+}
+
+const Register: React.FC<RegisterProps> = ({ onAuthenticate }) => {
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     email: false,
     password: false,
@@ -18,10 +22,15 @@ function Login({ onAuthenticate }) {
 
   function switchAuthModeHandler() {
     // Todo
-    navigation.replace("RegisterScreen");
+    navigation.replace("loginScreen");
   }
 
-  function submitHandler(credentials) {
+  function submitHandler(credentials: {
+    email: string;
+    confirmEmail: string;
+    password: string;
+    confirmPassword: string;
+  }) {
     let { email, confirmEmail, password, confirmPassword } = credentials;
 
     email = email.trim();
@@ -32,7 +41,12 @@ function Login({ onAuthenticate }) {
     const emailsAreEqual = email === confirmEmail;
     const passwordsAreEqual = password === confirmPassword;
 
-    if (!emailIsValid || !passwordIsValid) {
+    if (
+      !emailIsValid ||
+      !passwordIsValid ||
+      !emailsAreEqual ||
+      !passwordsAreEqual
+    ) {
       Alert.alert("Invalid input", "Please check your entered credentials.");
       setCredentialsInvalid({
         email: !emailIsValid,
@@ -48,20 +62,20 @@ function Login({ onAuthenticate }) {
   return (
     <View style={styles.authContent}>
       <AuthForm
-        isLogin={true}
+        isLogin={false}
         onSubmit={submitHandler}
         credentialsInvalid={credentialsInvalid}
       />
       <View style={styles.buttons}>
         <FlatButton onPress={switchAuthModeHandler}>
-          {"Create a new user"}
+          {"Log in instead"}
         </FlatButton>
       </View>
     </View>
   );
-}
+};
 
-export default Login;
+export default Register;
 
 const styles = StyleSheet.create({
   authContent: {
