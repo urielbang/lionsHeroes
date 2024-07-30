@@ -1,35 +1,50 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { StatusBar, StyleSheet } from "react-native";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "./app/screens/LoginScreen";
 import RegisterScreen from "./app/screens/RegisterScreen";
-import AuthContextProvider, { AuthContext } from "./app/store/auth.context";
+import AuthContextProvider from "./app/store/auth.context";
 import HomeLionsScreen from "./app/screens/HomeLionsScreen";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Ionicons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const RootApp = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#7122ba" },
+        headerTintColor: "white",
+        tabBarActiveTintColor: "#7122ba",
+      }}
+    >
+      <Tab.Screen
+        name="Welcome"
+        component={HomeLionsScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="user"
+        component={HomeLionsScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person" size={size} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 export default function App() {
-  const authCnx = useContext(AuthContext);
-  const [isLogged, setIsLogged] = useState(false);
-
-  useEffect(() => {
-    const fetchToken = async () => {
-      const storedToken = await AsyncStorage.getItem("token");
-
-      if (storedToken) {
-        authCnx.authenticate(storedToken);
-        setIsLogged(true);
-      } else {
-        setIsLogged(false);
-      }
-    };
-
-    fetchToken();
-  }, [authCnx.token]);
-
   return (
     <AuthContextProvider>
       <NavigationContainer>
@@ -38,7 +53,7 @@ export default function App() {
           <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
           <Stack.Screen name="loginScreen" component={LoginScreen} />
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-          <Stack.Screen name="home" component={HomeLionsScreen} />
+          <Stack.Screen name="home" component={RootApp} />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthContextProvider>
