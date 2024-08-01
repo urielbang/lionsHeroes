@@ -7,7 +7,11 @@ import { Colors } from "../../constants/styles";
 import { useNavigation } from "@react-navigation/native";
 
 interface RegisterProps {
-  onAuthenticate: (credentials: { email: string; password: string }) => void;
+  onAuthenticate: (credentials: {
+    email: string;
+    password: string;
+    name: string;
+  }) => void;
 }
 
 const Register: React.FC<RegisterProps> = ({ onAuthenticate }) => {
@@ -21,7 +25,6 @@ const Register: React.FC<RegisterProps> = ({ onAuthenticate }) => {
   const navigation = useNavigation();
 
   function switchAuthModeHandler() {
-    // Todo
     navigation.replace("loginScreen");
   }
 
@@ -30,22 +33,26 @@ const Register: React.FC<RegisterProps> = ({ onAuthenticate }) => {
     confirmEmail: string;
     password: string;
     confirmPassword: string;
+    name: string;
   }) {
-    let { email, confirmEmail, password, confirmPassword } = credentials;
+    let { email, confirmEmail, password, confirmPassword, name } = credentials;
 
     email = email.trim();
     password = password.trim();
+    name = name.trim();
 
     const emailIsValid = email.includes("@");
     const passwordIsValid = password.length > 6;
     const emailsAreEqual = email === confirmEmail;
     const passwordsAreEqual = password === confirmPassword;
+    const nameIsValid = name.length <= 12;
 
     if (
       !emailIsValid ||
       !passwordIsValid ||
       !emailsAreEqual ||
-      !passwordsAreEqual
+      !passwordsAreEqual ||
+      !nameIsValid
     ) {
       Alert.alert("Invalid input", "Please check your entered credentials.");
       setCredentialsInvalid({
@@ -56,7 +63,8 @@ const Register: React.FC<RegisterProps> = ({ onAuthenticate }) => {
       });
       return;
     }
-    onAuthenticate({ email, password });
+
+    onAuthenticate({ email, password, name });
   }
 
   return (

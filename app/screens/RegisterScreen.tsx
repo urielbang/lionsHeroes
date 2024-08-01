@@ -14,10 +14,10 @@ export default function RegisterScreen({ navigation }) {
   const [isAuth, setIsAuth] = useState(false);
   const authCtx = useContext(AuthContext);
 
-  const handleRegister = async ({ email, password }) => {
+  const handleRegister = async ({ email, password, name }) => {
     setIsAuth(true);
     try {
-      const token = await createUser(email, password);
+      const token = await createUser(email, password, name);
       authCtx.authenticate(token);
       if (token) {
         await AsyncStorage.setItem("token", token);

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import Button from "../ui/Button";
@@ -13,12 +13,14 @@ interface AuthFormProps {
     confirmEmail: string;
     password: string;
     confirmPassword: string;
+    name: string;
   }) => void;
   credentialsInvalid: {
     email: boolean;
     confirmEmail: boolean;
     password: boolean;
     confirmPassword: boolean;
+    name: boolean;
   };
 }
 
@@ -31,6 +33,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
   const [enteredConfirmEmail, setEnteredConfirmEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
+  const [enteredName, setEnteredName] = useState("");
 
   const authCnx = useContext(AuthContext);
   const navigation = useNavigation();
@@ -40,6 +43,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
     confirmEmail: emailsDontMatch,
     password: passwordIsInvalid,
     confirmPassword: passwordsDontMatch,
+    name: nameIsInvalid,
   } = credentialsInvalid;
 
   function updateInputValueHandler(inputType: string, enteredValue: string) {
@@ -56,6 +60,9 @@ const AuthForm: React.FC<AuthFormProps> = ({
       case "confirmPassword":
         setEnteredConfirmPassword(enteredValue);
         break;
+      case "name":
+        setEnteredName(enteredValue);
+        break;
     }
   }
 
@@ -65,6 +72,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
       confirmEmail: enteredConfirmEmail,
       password: enteredPassword,
       confirmPassword: enteredConfirmPassword,
+      name: enteredName,
     });
 
     if (authCnx.isAuthenticated) {
@@ -75,6 +83,16 @@ const AuthForm: React.FC<AuthFormProps> = ({
   return (
     <View style={styles.form}>
       <View>
+        {!isLogin && (
+          <Input
+            label="Name"
+            onUpdateValue={updateInputValueHandler.bind(this, "name")}
+            value={enteredName}
+            keyboardType="default"
+            isInvalid={nameIsInvalid}
+          />
+        )}
+
         <Input
           label="Email Address"
           onUpdateValue={updateInputValueHandler.bind(this, "email")}

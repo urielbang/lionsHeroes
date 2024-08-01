@@ -17,9 +17,7 @@ const RootApp = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: "#7122ba" },
-        headerTintColor: "white",
-        tabBarActiveTintColor: "#7122ba",
+        headerShown: false,
       }}
     >
       <Tab.Screen
