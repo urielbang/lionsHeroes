@@ -10,6 +10,7 @@ export default function HomeLionsScreen({ navigation }) {
     authCnx.logout();
     navigation.navigate("WelcomeScreen");
   };
+
   return (
     <View>
       <Text>HomeLionsScreen</Text>
