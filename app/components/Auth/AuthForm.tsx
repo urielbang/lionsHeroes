@@ -5,6 +5,7 @@ import Button from "../ui/Button";
 import Input from "./Input";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../../store/auth.context";
+import CustomText from "../CustomText";
 
 interface AuthFormProps {
   isLogin: boolean;
@@ -85,7 +86,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
       <View>
         {!isLogin && (
           <Input
-            label="Name"
+            label="register-screen.name"
             onUpdateValue={updateInputValueHandler.bind(this, "name")}
             value={enteredName}
             keyboardType="default"
@@ -94,7 +95,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
         )}
 
         <Input
-          label="Email Address"
+          label="register-screen.email"
           onUpdateValue={updateInputValueHandler.bind(this, "email")}
           value={enteredEmail}
           keyboardType="email-address"
@@ -102,7 +103,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
         />
         {!isLogin && (
           <Input
-            label="Confirm Email Address"
+            label="register-screen.email-confirm"
             onUpdateValue={updateInputValueHandler.bind(this, "confirmEmail")}
             value={enteredConfirmEmail}
             keyboardType="email-address"
@@ -110,7 +111,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
           />
         )}
         <Input
-          label="Password"
+          label="register-screen.password"
           onUpdateValue={updateInputValueHandler.bind(this, "password")}
           secure
           value={enteredPassword}
@@ -118,7 +119,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
         />
         {!isLogin && (
           <Input
-            label="Confirm Password"
+            label="register-screen.confirm-password"
             onUpdateValue={updateInputValueHandler.bind(
               this,
               "confirmPassword"
@@ -130,7 +131,11 @@ const AuthForm: React.FC<AuthFormProps> = ({
         )}
         <View style={styles.buttons}>
           <Button onPress={submitHandler}>
-            {isLogin ? "Log In" : "Sign Up"}
+            {isLogin ? (
+              <CustomText tx="welcome-screen.login" />
+            ) : (
+              <CustomText tx="register-screen.sign-up" />
+            )}
           </Button>
         </View>
       </View>

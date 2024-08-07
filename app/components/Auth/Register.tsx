@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
-
+import CustomText from "../CustomText";
 import FlatButton from "../ui/FlatButton";
 import AuthForm from "./AuthForm";
 import { Colors } from "../../constants/styles";
@@ -20,6 +20,7 @@ const Register: React.FC<RegisterProps> = ({ onAuthenticate }) => {
     password: false,
     confirmEmail: false,
     confirmPassword: false,
+    name: false,
   });
 
   const navigation = useNavigation();
@@ -45,7 +46,7 @@ const Register: React.FC<RegisterProps> = ({ onAuthenticate }) => {
     const passwordIsValid = password.length > 6;
     const emailsAreEqual = email === confirmEmail;
     const passwordsAreEqual = password === confirmPassword;
-    const nameIsValid = name.length <= 12;
+    const nameIsValid = name.length > 0 && name.length <= 10;
 
     if (
       !emailIsValid ||
@@ -60,6 +61,7 @@ const Register: React.FC<RegisterProps> = ({ onAuthenticate }) => {
         confirmEmail: !emailIsValid || !emailsAreEqual,
         password: !passwordIsValid,
         confirmPassword: !passwordIsValid || !passwordsAreEqual,
+        name: !nameIsValid,
       });
       return;
     }
@@ -76,7 +78,7 @@ const Register: React.FC<RegisterProps> = ({ onAuthenticate }) => {
       />
       <View style={styles.buttons}>
         <FlatButton onPress={switchAuthModeHandler}>
-          {"Log in instead"}
+          <CustomText tx="register-screen.log-in-instead" />
         </FlatButton>
       </View>
     </View>

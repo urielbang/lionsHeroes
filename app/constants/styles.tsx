@@ -3,5 +3,5 @@ export const Colors = {
   primary500: "#3FA2F6",
   primary800: "#0F67B1",
   error100: "#fcdcbf",
-  error500: "#f37c13",
+  error500: "red",
 };

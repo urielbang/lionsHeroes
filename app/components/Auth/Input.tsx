@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../../constants/styles";
+import CustomText from "../CustomText";
 
 interface InputProps extends TextInputProps {
   label: string;
@@ -41,7 +42,7 @@ const Input: React.FC<InputProps> = forwardRef(function Input(
   return (
     <View style={styles.inputContainer}>
       <Text style={[styles.label, isInvalid && styles.labelInvalid]}>
-        {label}
+        <CustomText tx={label} />
       </Text>
       <View>
         <TextInput
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
   },
   eyeIconContainer: {
     position: "absolute",
-    right: 10,
-    padding: 5,
+    // right: 10,
+    // padding: 5,
   },
 });

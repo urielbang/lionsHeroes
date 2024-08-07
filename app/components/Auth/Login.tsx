@@ -5,6 +5,7 @@ import FlatButton from "../ui/FlatButton";
 import AuthForm from "./AuthForm";
 import { Colors } from "../../constants/styles";
 import { useNavigation } from "@react-navigation/native";
+import CustomText from "../CustomText";
 
 interface LoginProps {
   onAuthenticate: (credentials: { email: string; password: string }) => void;
@@ -63,7 +64,7 @@ const Login: React.FC<LoginProps> = ({ onAuthenticate }) => {
       />
       <View style={styles.buttons}>
         <FlatButton onPress={switchAuthModeHandler}>
-          {"Create a new user"}
+          <CustomText tx="login-screen.create-user" />
         </FlatButton>
       </View>
     </View>
