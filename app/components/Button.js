@@ -1,15 +1,6 @@
 import React from "react";
-import {
-  StyleSheet,
-  TouchableOpacity,
-  TouchableOpacityProps,
-} from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import CustomText from "./CustomText";
-
-interface ButtonProps extends TouchableOpacityProps {
-  isDisabled?: boolean;
-  color?: String;
-}
 
 export function Button({
   isDisabled: disabled = false,
@@ -17,7 +8,7 @@ export function Button({
   onPress,
   children,
   ...props
-}: ButtonProps) {
+}) {
   return (
     <TouchableOpacity
       onPress={onPress}

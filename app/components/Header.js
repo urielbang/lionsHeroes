@@ -8,10 +8,6 @@ export const Header = ({
   text,
   goBackCallback,
   shouldShowBackButton = true,
-}: {
-  text: string;
-  goBackCallback?: () => void;
-  shouldShowBackButton?: boolean;
 }) => {
   const navigation = useNavigation();
 

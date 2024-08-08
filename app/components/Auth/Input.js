@@ -1,12 +1,10 @@
-import React, { useState, forwardRef, Ref } from "react";
+import React, { useState, forwardRef } from "react";
 import {
   View,
   Text,
   TextInput,
   StyleSheet,
   TouchableOpacity,
-  KeyboardTypeOptions,
-  TextInputProps,
   useWindowDimensions,
   Platform,
 } from "react-native";
@@ -14,16 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../../constants/styles";
 import CustomText from "../CustomText";
 
-interface InputProps extends TextInputProps {
-  label: string;
-  keyboardType?: KeyboardTypeOptions;
-  secure?: boolean;
-  onUpdateValue: (text: string) => void;
-  value: string;
-  isInvalid?: boolean;
-}
-
-const Input: React.FC<InputProps> = forwardRef(function Input(
+const Input = forwardRef(function Input(
   {
     label,
     keyboardType = "default",
@@ -33,7 +22,7 @@ const Input: React.FC<InputProps> = forwardRef(function Input(
     isInvalid = false,
     ...props
   },
-  ref: Ref<TextInput>
+  ref
 ) {
   const [showPassword, setShowPassword] = useState(false);
   const { height } = useWindowDimensions();
@@ -100,7 +89,5 @@ const styles = StyleSheet.create({
   },
   eyeIconContainer: {
     position: "absolute",
-    // right: 10,
-    // padding: 5,
   },
 });

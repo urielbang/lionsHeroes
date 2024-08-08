@@ -2,11 +2,7 @@ import React from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 
-interface LoadingOverlayProps {
-  message: string;
-}
-
-const LoadingOverlay: React.FC<LoadingOverlayProps> = ({ message }) => {
+const LoadingOverlay = ({ message }) => {
   return (
     <LinearGradient
       colors={["#2c3e50", "#34495e"]}

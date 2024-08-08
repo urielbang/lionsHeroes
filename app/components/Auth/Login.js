@@ -7,11 +7,7 @@ import { Colors } from "../../constants/styles";
 import { useNavigation } from "@react-navigation/native";
 import CustomText from "../CustomText";
 
-interface LoginProps {
-  onAuthenticate: (credentials: { email: string; password: string }) => void;
-}
-
-const Login: React.FC<LoginProps> = ({ onAuthenticate }) => {
+const Login = ({ onAuthenticate }) => {
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     email: false,
     password: false,
@@ -22,16 +18,10 @@ const Login: React.FC<LoginProps> = ({ onAuthenticate }) => {
   const navigation = useNavigation();
 
   function switchAuthModeHandler() {
-    // Todo
     navigation.replace("RegisterScreen");
   }
 
-  function submitHandler(credentials: {
-    email: string;
-    confirmEmail: string;
-    password: string;
-    confirmPassword: string;
-  }) {
+  function submitHandler(credentials) {
     let { email, confirmEmail, password, confirmPassword } = credentials;
 
     email = email.trim();

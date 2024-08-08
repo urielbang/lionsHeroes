@@ -7,29 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../../store/auth.context";
 import CustomText from "../CustomText";
 
-interface AuthFormProps {
-  isLogin: boolean;
-  onSubmit: (credentials: {
-    email: string;
-    confirmEmail: string;
-    password: string;
-    confirmPassword: string;
-    name: string;
-  }) => void;
-  credentialsInvalid: {
-    email: boolean;
-    confirmEmail: boolean;
-    password: boolean;
-    confirmPassword: boolean;
-    name: boolean;
-  };
-}
-
-const AuthForm: React.FC<AuthFormProps> = ({
-  isLogin,
-  onSubmit,
-  credentialsInvalid,
-}) => {
+const AuthForm = ({ isLogin, onSubmit, credentialsInvalid }) => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredConfirmEmail, setEnteredConfirmEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
@@ -47,7 +25,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
     name: nameIsInvalid,
   } = credentialsInvalid;
 
-  function updateInputValueHandler(inputType: string, enteredValue: string) {
+  function updateInputValueHandler(inputType, enteredValue) {
     switch (inputType) {
       case "email":
         setEnteredEmail(enteredValue);

@@ -6,15 +6,7 @@ import AuthForm from "./AuthForm";
 import { Colors } from "../../constants/styles";
 import { useNavigation } from "@react-navigation/native";
 
-interface RegisterProps {
-  onAuthenticate: (credentials: {
-    email: string;
-    password: string;
-    name: string;
-  }) => void;
-}
-
-const Register: React.FC<RegisterProps> = ({ onAuthenticate }) => {
+const Register = ({ onAuthenticate }) => {
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     email: false,
     password: false,
@@ -29,13 +21,7 @@ const Register: React.FC<RegisterProps> = ({ onAuthenticate }) => {
     navigation.replace("loginScreen");
   }
 
-  function submitHandler(credentials: {
-    email: string;
-    confirmEmail: string;
-    password: string;
-    confirmPassword: string;
-    name: string;
-  }) {
+  function submitHandler(credentials) {
     let { email, confirmEmail, password, confirmPassword, name } = credentials;
 
     email = email.trim();
