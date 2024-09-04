@@ -1,6 +1,6 @@
 # LionsHeroes
 
-![LionsHeroes Logo](https://github.com/urielbang/LionsHeroes/blob/main/path-to-your-image.jpeg) <!-- Replace 'path-to-your-image.jpeg' with the actual path to the image in your GitHub repository -->
+![LionsHeroes Logo](https://github.com/urielbang/LionsHeroes/assets/android-chrome-512x512.png) <!-- Replace 'path-to-your-image.jpeg' with the actual path to the image in your GitHub repository -->
 
 ## Description
 
