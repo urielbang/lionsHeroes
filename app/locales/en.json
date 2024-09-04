@@ -1,0 +1,22 @@
+{
+  "change-language": "Change language",
+  "welcome": "Welcome to Lions Heroes !",
+  "welcome-screen": {
+    "register": "Register",
+    "login": "Login"
+  },
+  "register-screen": {
+    "name": "Name",
+    "email": "Email Address",
+    "email-confirm": "Confirm Email Address",
+    "password": "Password",
+    "confirm-password": "Confirm Password",
+    "sign-up": "Sign Up",
+    "log-in-instead": "Log in instead"
+  },
+  "login-screen": {
+    "email": "Email Address",
+    "password": "Password",
+    "create-user": "Create a new user"
+  }
+}

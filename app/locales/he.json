@@ -1,0 +1,22 @@
+{
+  "change-language": "שינוי שפה",
+  "welcome": "ברוכים הבאים לגיבורי אריות !",
+  "welcome-screen": {
+    "register": "הרשמה",
+    "login": "התחברות"
+  },
+  "register-screen": {
+    "name": "שם",
+    "email": "אימייל",
+    "email-confirm": "אימות כתובת מייל",
+    "password": "סיסמא",
+    "confirm-password": "אימות סיסמא",
+    "sign-up": "הרשמה",
+    "log-in-instead": "התחבר במקום"
+  },
+  "login-screen": {
+    "email": "אימות כתובת מייל",
+    "password": "סיסמא",
+    "create-user": "יצירת משתמש חדש"
+  }
+}
